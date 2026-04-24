@@ -1,5 +1,6 @@
 # siglens
 LLM-based interpretation layer that converts alerts and events into structured, actionable output for incident response.
+
 Minimal working implementation exposed via a FastAPI service.
 
 ## Components
