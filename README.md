@@ -16,6 +16,14 @@ observability data → interpretation → response
 
 ---
 
+## System Context
+This repository is part of the SigLens system:
+
+[siglens](https://github.com/anjanjaa/siglens) — interpretation layer (LLM-based analysis)  
+[siglens-clustering](https://github.com/anjanjaa/siglens-clustering) — structural layer (semantic grouping of alerts)
+
+---
+
 ## System Flow
 ```
 [ Observability Systems ]  
