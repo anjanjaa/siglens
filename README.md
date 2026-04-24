@@ -1,28 +1,25 @@
 # siglens
+
 LLM-based interpretation layer that converts alerts and events into structured, actionable output for incident response.
 
 Minimal working implementation exposed via a FastAPI service.
 
-## Components
-- FastAPI ingestion endpoint
-- LLM-based interpretation layer
-- Structured output interface (JSON)
-- Minimal single-alert analysis pipeline
-
 ---
 
 ## Context
+
 Monitoring systems detect anomalies but leave interpretation to operators.
 
-In high-volume environments, alerts often lack context, prioritization, and clear actionability.
-This creates a gap between detection and response.
+In high-volume environments, alerts often lack context, prioritization, and clear actionability. This creates a gap between detection and response.
 
-The interpretation layer sits between detection and response, converting observability data into structured output for action.
-It reduces cognitive load and enables consistent handling.
+SigLens introduces an interpretation layer between these stages, converting observability data into structured outputs that support consistent and faster response.
 
-observability data → interpretation → response
+**observability data → interpretation → response**
 
-## Flow
+---
+
+## System Flow
+
 ```
 [ Observability Systems ]  
 (alerts, metrics, events)   
@@ -39,19 +36,20 @@ structured JSON output 
 ---
 
 ## Functionality
-Given an alert event, SigLens:
 
-- Summarizes the incident
-- Classifies severity
-- Suggests likely root causes
-- Recommends operational actions
+Given an alert event, SigLens:
+  - summarizes the incident
+  - classifies severity
+  - suggests likely root causes
+  - recommends operational actions
 
 All outputs are returned as structured JSON for integration into downstream systems.
 
-## Example
-Example transformation from raw alert to structured output:
+---
 
-### Input Alert
+## Example
+
+### Input
 ```json
 {
   "alert_name": "HighLatency",
@@ -60,7 +58,6 @@ Example transformation from raw alert to structured output:
   "threshold": 200
 }
 ```
-
 ### Output Analysis
 ```json
 {
@@ -70,7 +67,7 @@ Example transformation from raw alert to structured output:
   "recommended_actions": [
     "Check bandwidth usage",
     "Inspect signal quality",
-    "Review recent deployments",
+    "Review recent deployments"
   ]
 }
 ```
@@ -78,40 +75,47 @@ Example transformation from raw alert to structured output:
 ---
 
 ## Architecture
+
 - FastAPI service for alert ingestion
 - LLM-based interpretation engine
 - Structured JSON output validation
 - Designed for integration with observability systems such as Prometheus and Alertmanager  
 
 ## Model Layer
-SigLens is designed for provider-agnostic LLM integration.
 
-The first version focuses on single-alert analysis. Planned extensions include:
-- OpenAI / Claude provider support
-- Model comparison
-- Fallback strategies
-- Provider-independent routing
+SigLens is designed as a provider-agnostic interface for LLM integration.
+
+### Current implementation
+- single-alert analysis pipeline
+
+### Planned
+- OpenAI / Gemini / Claude support
+- model comparison
+- fallback strategies
+- provider-independent routing
 
 ---
 
 ## Tech Stack
+
 - Python
 - FastAPI
 - Pydantic
 - OpenAI API
+- Google Gemini API
 - Anthropic Claude API
 
 ---
 
-## Current Status
-Minimal working v0 focused on single-alert analysis via a FastAPI interface.
+## Status
 
-## Future Extensions
-- Alert clustering using embeddings
-- Multi-alert correlation
-- Drift detection across alert patterns
-- Slack/incident tool integration
-- Context-aware analysis using historical alerts (RAG)
+Minimal working v0 focused on single-alert interpretation via a FastAPI interface.
 
-- Model fallback strategies
+## Direction
 
+- alert clustering using embeddings
+- multi-alert correlation
+- drift detection across alert patterns
+- integration with incident management systems
+- context-aware analysis using historical alerts (RAG)
+- model fallback strategies
